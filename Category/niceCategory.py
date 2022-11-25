@@ -4,12 +4,7 @@ import pandas as pd
 import csv
 from csv import writer
 
-'''
-pages=range(1,10)
-for page in pages:
-    response= requests.get('http://books.toscrape.com/catalogue/page-' + str(page) + '.html')
 
-'''
 pages=range(1,51)
 for page in pages:
 
@@ -48,26 +43,8 @@ for page in pages:
             cat_of_book = cat[14:-10]
             catego_book = categorie_ok.get_text().strip()
             
-            
-            # basecat = "http://books.toscrape.com/catalogue/category/books"+cat_of_book+cat_of_index
-            
-            # get_url = requests.get(basecat)
-            # soup2 = BeautifulSoup(get_url.text, 'html.parser')
-            # for h3 in soup.find_all('h3'):
-            #     for a in h3.find_all('a'):
-            #         title_count = (a.get('title'))
-            #         print(title_count)
-            # for thing in soup2.find('h3'):
-            #     print(thing)
-            #   .contents[0] 
-            
-            # get_first_ul = soup2.find('ul', {"class": "nav-list"})
-            
-            # get_ul = get_first_ul.find('ul')
-            
-            # list_books_category = get_ul.find_all('li')
-            # print(list_books_category )
-    with open('niceCategory.csv', 'a', encoding='utf8', newline='') as cat_f_csv:
+          
+    with open('niceCategory2.csv', 'a', encoding='utf8', newline='') as cat_f_csv:
             thewriter = csv.writer(cat_f_csv, delimiter=',')
             header = ['Title ', 'Category']
             thewriter.writerow(header)
@@ -85,53 +62,7 @@ for page in pages:
                     thewriter.writerow(pinfo) 
                        
                        
-                    
-        # category = soup.find('h1').get_text()
         
-        # for li in list_books_category:
-        #     category_name_in_link = li.find('a').contents[0]
-        #     print(category_name_in_link)
-        #    ('a').contents[0]
-            
-    """
-            
-            title = []
-	for h3 in soup.find_all('h3'):
-		for a in h3.find_all('a'):
-			title_count = (a.get('title'))
-			title.append(title_count)
-            
-        """
-    '''
-        category = soup.find('h1').get_text()
-	print('\n' + 'Books in: ' + category + '\n')
-
-        
-        '''    
     
-    # print(response)                  
-
-
-
-
-
-            # cat_link_total = basecat2+category_name_in_link.replace("../", '')
-            # soupcategorie=BeautifulSoup(cat_link_total,'html.parser')
-            # find_title_cat=soupcategorie.find('a')['href']
-            # print(find_title_cat)    
-                
-            
-            
-            
-            # get_Url_Cat = requests.get(cat_link_total)
-            
-            # soup3 = BeautifulSoup(get_Url_Cat.text, 'html.parser')
-            
-            # soup_h1 = soup3.find("h1").text
-            
-            # for name in soup3.findAll("h3"):
-            #     name_1=name.get_text().strip()
-            #     name_str=str(name)
-            
-            # print(cat_link_total)
-        
+    
+   
