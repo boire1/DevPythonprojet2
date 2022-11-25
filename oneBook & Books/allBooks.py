@@ -1,44 +1,3 @@
-# from bs4 import  BeautifulSoup
-# import requests
-# import re
-
-# gpu = input("what product do you to search for ? ")
-
-# url = f"https://www.newegg.ca/p/pl?d={gpu}&N=4131"
-# page = requests.get(url)
-# soup=BeautifulSoup(page.text,'html.parser')
-
-# page_text = soup.find(class_="list-tool-pagination-text").strong
-# pages = int(str(page_text).split("/")[-2].split(">")[-1][:-1])
-
-# for page in range (1, pages+1):
-    
-#     url = f"https://www.newegg.ca/p/pl?d={gpu}&N=4131&page={page}"
-#     page = requests.get(url)
-#     soup=BeautifulSoup(page.text,'html.parser') 
-#     items = soup.find_all(text=re.compile(gpu))
-#     for item in items:
-#        parent=item.parent
-#        if parent.name !="a":
-#             #print(pages)
-#             link = parent['href']
-#             price=item.find_parent(class_="price-current").strong.string
-#             next_parent=item.find_parent(class_="item-container").strong.string
-#             print(price)
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-
-
-# pages = [str(i) for i in range(1,4)] # de 1 a 51
-# for page in pages:
-#     response= requests.get(f'http://books.toscrape.com/catalogue/page-' + page + '.html')
-
-#000000000000000000000000000000000000000000000000000000000000    
-
-
-
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
@@ -55,7 +14,7 @@ all_book=[]
 
 links = []
 books=[] 
-pages=range(1,2)
+pages=range(1,51)
 for page in pages:
     response= requests.get('http://books.toscrape.com/catalogue/page-' + str(page) + '.html')
      
@@ -73,8 +32,7 @@ for page in pages:
         base_url_image="https://books.toscrape.com/"
         complete_link = base_url + book_link
         links.append(complete_link)
-        for l in links:
-            liens=l    
+         
           
 
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -137,38 +95,25 @@ for link in links:
     
     # 
 
-        
      
+        
     info=[title,tab_bk_UPC,catego_book,price,
-    tableau_reviews,stock,bk_price_excl_tva,bk_price_incl_tva,image_url,book_rating,description,l]
+    tableau_reviews,stock,bk_price_excl_tva,bk_price_incl_tva,image_url,book_rating,description]
     books.append(info) 
 
 # thewriter.writerow(info)
 
 
-    
 
-    with open('allBooks_2.csv', 'w',encoding='utf8', newline='' ) as ff_csv:
+
+    with open('allBooks_1.csv', 'w',encoding='utf8', newline='' ) as ff_csv:
         thewriter = csv.writer(ff_csv, delimiter=',')
         header=['Title ','Num_Upc ','Category ','Price', 'Reviews', 'Available', '(Price exl tva)',
-                '(Price inc tva)','Image Link','Rating ', 'Description','Link of the book']
-        
+                '(Price inc tva)','Image Link','Rating ', 'Description']
+
         thewriter.writerow(header)
         thewriter.writerows(books)
-    
-      
-# print(books)
 
-    #     "N°Upc":tab_bk_UPC,
-    #     "Category":catego_book,
-    #     "Price":price,
-    #     "Reviews":tableau_reviews,
-    #     "Available":stock,
-    #     "(Price exl tva)":bk_price_excl_tva,
-    #     "(Price inc tva)":bk_price_incl_tva,
-    #     "Image":image_url,
-    #     "Rating":book_rating,
-    #     }
+
+
     
-    # all_book.append(book)
-     
